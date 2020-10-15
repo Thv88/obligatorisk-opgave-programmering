@@ -8,4 +8,6 @@ import java.util.List;
 public interface OwnerRepository extends CrudRepository<Owner, Long> {
 
     public List<Owner> findAll();
+
+    public Owner save(Owner owner);
 }

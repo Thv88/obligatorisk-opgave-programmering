@@ -16,14 +16,32 @@
     <title>Owners</title>
 </head>
 <body>
+<nav class="navbar navbar-expand-sm bg-dark justify-content-center">
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/createOwner">Create owner</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/createCar">Create car</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/createAccount">Create account</a>
+        </li>
+    </ul>
+</nav>
     <div class="container">
+        <h1 class="display-4">Owners</h1>
+        <a href="/createOwner" class="btn btn-primary">Create owner</a>
         <table class="table table-striped table-hover ">
             <thead class="thead-dark">
             <tr>
                 <th>Owners name</th>
                 <th>Owners social security number</th>
-                <th>Bank accounts</th>
-
+                <th>Owned bank accounts</th>
+                <th>Owned cars</th>
             </tr>
             </thead>
             <tbody>
@@ -31,6 +49,57 @@
                 <td th:text="${owner.getOwnerName()}"></td>
                 <td th:text="${owner.getSocialSecurityNumber()}"></td>
                 <td><span th:each="account : ${owner.getOwnedBankAccounts()}" th:text="${account.getAccountNumber() } + ', '"></span></td>
+                <td><span th:each="car : ${owner.getOwnedCars()}" th:text="${car.getBrand()} + ' ' +${car.getModel()} + ', '"></span></td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="container">
+        <h1 class="display-4">Cars</h1>
+        <a href="/createCar" class="btn btn-primary">Create car</a>
+
+        <table class="table table-striped table-hover ">
+            <thead class="thead-dark">
+            <tr>
+                <th>Car color</th>
+                <th>Car brand</th>
+                <th>Car model</th>
+                <th>Max speed</th>
+                <th>Car owners</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="car : ${cars}">
+                <td th:text="${car.getColor()}"></td>
+                <td th:text="${car.getBrand()}"></td>
+                <td th:text="${car.getModel()}"></td>
+                <td th:text="${car.getMaxSpeed()}"></td>
+                <td><span th:each="owner : ${car.getOwners()}" th:text="${owner.getOwnerName() } + ', '"></span></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="container">
+        <h1 class="display-4">Bank accounts</h1>
+        <a href="/createAccount" class="btn btn-primary">Create account</a>
+
+        <table class="table table-striped table-hover ">
+            <thead class="thead-dark">
+            <tr>
+                <th>Bank name</th>
+                <th>Account number</th>
+                <th>Balance</th>
+                <th>Owner</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="bankAccount : ${bankAccounts}">
+                <td th:text="${bankAccount.getBankName()}"></td>
+                <td th:text="${bankAccount.getAccountNumber()}"></td>
+                <td th:text="${bankAccount.getBalance()}"></td>
+                <td th:text="${bankAccount.getOwner().getOwnerName()}"></td>
             </tr>
             </tbody>
         </table>

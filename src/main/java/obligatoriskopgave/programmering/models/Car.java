@@ -14,6 +14,8 @@ public class Car {
 
     private String brand;
 
+    private String model;
+
     private Double maxSpeed;
 
     @ManyToMany(mappedBy = "ownedCars")
@@ -60,5 +62,13 @@ public class Car {
 
     public void setOwners(List<Owner> owners) {
         this.owners = owners;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
     }
 }
